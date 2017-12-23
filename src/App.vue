@@ -36,7 +36,7 @@ body
   mix-blend-mode multiply
 
 // backgrounds
-// TODO randomly generate these
+// TODO randomly generate these (deg -180 to 180, colour ???, % 50 +- 5)
 body
   background linear-gradient(-55deg,#CAB4FA 48%,transparent 48%) no-repeat
 #app
