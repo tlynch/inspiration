@@ -36,9 +36,18 @@ body
   mix-blend-mode multiply
 
 // backgrounds
-// TODO randomly generate these (deg -180 to 180, colour ???, % 50 +- 5)
-body
+#app::before, #app::after
+  // position + size
+  display block
+  position absolute
+  content ''
+  width 100%
+  height 100%
+  z-index -1
+// TODO randomly generate these
+// shape + colour
+#app::before
   background linear-gradient(-55deg,#CAB4FA 48%,transparent 48%) no-repeat
-#app
+#app::after
   background linear-gradient(25deg,transparent 52%,#70A6E5 52%) no-repeat
 </style>
