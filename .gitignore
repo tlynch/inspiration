@@ -1,0 +1,9 @@
+# temporary files
+*.swp
+
+# compiled files
+node_modules/
+dist/*
+
+# error/log files
+*.log
