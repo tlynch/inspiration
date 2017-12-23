@@ -1,25 +1,44 @@
 <template>
 <div id="app">
-  <div id="pre">{{ pre }}</div>
+  <intro></intro>
   <word></word>
 </div>
 </template>
 
 <script>
+import Intro from './components/Intro.vue'
 import Word from './components/Word.vue'
 
 export default {
   name: 'app',
   components: {
+    Intro,
     Word
   },
-  data() {
-    return {
-      pre: "This week's word is..."
-    }
-  }
 }
 </script>
 
 <style lang="stylus">
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300i,700')
+
+// reset
+body
+  margin 0
+#app
+  height 100%
+  width 100%
+
+// cutout text
+.cutout
+  color white
+  background black
+  mix-blend-mode multiply
+
+// backgrounds
+// TODO randomly generate these
+body
+  background linear-gradient(-55deg,#CAB4FA 48%,transparent 48%) no-repeat
+#app
+  background linear-gradient(25deg,transparent 52%,#70A6E5 52%) no-repeat
 </style>
