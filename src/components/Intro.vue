@@ -19,7 +19,7 @@ export default {
   font-family 'Roboto', sans-serif
   font-weight 300
   font-style italic
-  font-size 50px
+  font-size 35px
 
   // size + position
   position absolute
