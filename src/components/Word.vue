@@ -14,7 +14,7 @@ export default {
   // font
   font-family 'Roboto', sans-serif
   font-weight bold
-  font-size 100px
+  font-size 70px
   font-variant small-caps
 
   // size + position
