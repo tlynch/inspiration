@@ -5,12 +5,7 @@
 <script>
 export default {
   name: 'word',
-  props: [ 'word' ],
-  data() {
-    return {
-      // word: l[i]  // weekly random word
-    }
-  }
+  props: [ 'word' ]
 }
 </script>
 
