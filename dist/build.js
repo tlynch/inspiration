@@ -12033,7 +12033,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n#intro {\n  font-family: 'Roboto', sans-serif;\n  font-weight: 300;\n  font-style: italic;\n  font-size: 50px;\n  position: absolute;\n  top: 50px;\n  left: 100px;\n  padding: 0 15px;\n}\n", ""]);
+exports.push([module.i, "\n#intro {\n  font-family: 'Roboto', sans-serif;\n  font-weight: 300;\n  font-style: italic;\n  font-size: 35px;\n  position: absolute;\n  top: 50px;\n  left: 100px;\n  padding: 0 15px;\n}\n", ""]);
 
 // exports
 
@@ -12178,7 +12178,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n#word {\n  font-family: 'Roboto', sans-serif;\n  font-weight: bold;\n  font-size: 100px;\n  font-variant: small-caps;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  padding: 0 25px;\n}\n", ""]);
+exports.push([module.i, "\n#word {\n  font-family: 'Roboto', sans-serif;\n  font-weight: bold;\n  font-size: 70px;\n  font-variant: small-caps;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  padding: 0 25px;\n}\n", ""]);
 
 // exports
 
@@ -12200,12 +12200,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
   name: 'word',
-  props: ['word'],
-  data: function data() {
-    return {
-      // word: l[i]  // weekly random word
-    };
-  }
+  props: ['word']
 };
 
 /***/ }),
