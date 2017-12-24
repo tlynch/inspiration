@@ -3,7 +3,7 @@
   <div class="triangle" :style="T[0]"></div>
   <div class="triangle" :style="T[1]"></div>
   <intro></intro>
-  <word></word>
+  <word :word="word"></word>
 </div>
 </template>
 
@@ -13,22 +13,23 @@ import Intro from './components/Intro.vue'
 import Word from './components/Word.vue'
 var seedrandom = require('seedrandom')  // seeded rng
 
+//TODO get full list, put in separate file + import/require
+var l = ['Truth', 'Breathe']  // list of words
+
 // generate seed (this monday's date)
 var now = new Date()
 now.setUTCDate(now.getUTCDate() - (now.getUTCDay()||7  - 1))
 var d = now.toDateString()
 // get rng seeded using monday date
 var rng = seedrandom(d)
+// get random index
+var i = Math.floor(rng() * (l.length))
 // get rotations: [-180, 180)
 var r = [(rng() * 360) - 180, (rng() * 360) - 180]
 // get colours (hue): [0, 360)
 var c = [(rng() * 360), (rng() * 360)]
 // get positions (offset): [40, 60)
 var p = [(rng() * 10) + 40, (rng() * 10) + 40]
-
-console.log('rotation:', r)
-console.log('colour:', c)
-console.log('position:', p)
 
 // build css for gradients
 // FIXME this could be DRYier
@@ -45,6 +46,7 @@ export default {
   },
   data() {
     return {
+      word: l[i],
       T: [
         { background: g[0] },
         { background: g[1] }
