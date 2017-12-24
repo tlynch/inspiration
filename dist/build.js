@@ -11833,7 +11833,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto:300i,700);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\n  margin: 0;\n}\n#app {\n  height: 100%;\n  width: 100%;\n}\n.cutout {\n  color: #fff;\n  background: #000;\n  mix-blend-mode: multiply;\n}\nbody {\n  background: linear-gradient(-55deg, #cab4fa 48%, transparent 48%) no-repeat;\n}\n#app {\n  background: linear-gradient(25deg, transparent 52%, #70a6e5 52%) no-repeat;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n  margin: 0;\n}\n#app {\n  height: 100%;\n  width: 100%;\n}\n.cutout {\n  color: #fff;\n  background: #000;\n  mix-blend-mode: multiply;\n}\n.triangle {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -11899,12 +11899,45 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+
+// imports
+var seedrandom = __webpack_require__(27); // seeded rng
+
+//TODO get full list, put in separate file + import/require
+var l = ['Truth', 'Breathe']; // list of words
+
+// generate seed (this monday's date)
+var now = new Date();
+now.setUTCDate(now.getUTCDate() - (now.getUTCDay() || 7 - 1));
+var d = now.toDateString();
+// get rng seeded using monday date
+var rng = seedrandom(d);
+// get random index
+var i = Math.floor(rng() * l.length);
+// get rotations: [-180, 180)
+var r = [rng() * 360 - 180, rng() * 360 - 180];
+// get colours (hue): [0, 360)
+var c = [rng() * 360, rng() * 360];
+// get positions (offset): [40, 60)
+var p = [rng() * 10 + 40, rng() * 10 + 40];
+
+// build css for gradients
+// FIXME this could be DRYier
+var g = ["linear-gradient(" + r[0] + "deg,hsl(" + c[0] + ",90%,80%)" + p[0] + "%,transparent " + p[0] + "%) no-repeat", "linear-gradient(" + r[1] + "deg,transparent " + p[1] + "%,hsl(" + c[1] + ",90%,80%)" + p[1] + "%) no-repeat"];
 
 exports.default = {
   name: 'app',
   components: {
     Intro: _Intro2.default,
     Word: _Word2.default
+  },
+  data: function data() {
+    return {
+      word: l[i],
+      T: [{ background: g[0] }, { background: g[1] }]
+    };
   }
 };
 
@@ -12061,7 +12094,7 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5070438c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Word_vue__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5070438c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Word_vue__ = __webpack_require__(26);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -12165,30 +12198,42 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-// get monday date
-var now = new Date();
-now.setUTCDate(now.getUTCDate() - (now.getUTCDay() - 1)); // TODO think through this logic
-var d = now.toDateString();
-// get rng seeded using monday date
-var seedrandom = __webpack_require__(26);
-var rng = seedrandom(d);
-
-// TODO: get random word from list using seeded rng
-var l = ['Truth', 'Breathe'];
-var rand = 'Truth';
-console.log(rng());
-
 exports.default = {
   name: 'word',
+  props: ['word'],
   data: function data() {
     return {
-      word: rand
+      // word: l[i]  // weekly random word
     };
   }
 };
 
 /***/ }),
 /* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "cutout", attrs: { id: "word" } }, [
+    _vm._v(_vm._s(this.word))
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5070438c", esExports)
+  }
+}
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // A library of seedable RNGs implemented in Javascript.
@@ -12203,17 +12248,17 @@ exports.default = {
 // alea, a 53-bit multiply-with-carry generator by Johannes Baagøe.
 // Period: ~2^116
 // Reported to pass all BigCrush tests.
-var alea = __webpack_require__(27);
+var alea = __webpack_require__(28);
 
 // xor128, a pure xor-shift generator by George Marsaglia.
 // Period: 2^128-1.
 // Reported to fail: MatrixRank and LinearComp.
-var xor128 = __webpack_require__(28);
+var xor128 = __webpack_require__(29);
 
 // xorwow, George Marsaglia's 160-bit xor-shift combined plus weyl.
 // Period: 2^192-2^32
 // Reported to fail: CollisionOver, SimpPoker, and LinearComp.
-var xorwow = __webpack_require__(29);
+var xorwow = __webpack_require__(30);
 
 // xorshift7, by François Panneton and Pierre L'ecuyer, takes
 // a different approach: it adds robustness by allowing more shifts
@@ -12221,7 +12266,7 @@ var xorwow = __webpack_require__(29);
 // with 256 bits, that passes BigCrush with no systmatic failures.
 // Period 2^256-1.
 // No systematic BigCrush failures reported.
-var xorshift7 = __webpack_require__(30);
+var xorshift7 = __webpack_require__(31);
 
 // xor4096, by Richard Brent, is a 4096-bit xor-shift with a
 // very long period that also adds a Weyl generator. It also passes
@@ -12230,18 +12275,18 @@ var xorshift7 = __webpack_require__(30);
 // collisions.
 // Period: 2^4128-2^32.
 // No systematic BigCrush failures reported.
-var xor4096 = __webpack_require__(31);
+var xor4096 = __webpack_require__(32);
 
 // Tyche-i, by Samuel Neves and Filipe Araujo, is a bit-shifting random
 // number generator derived from ChaCha, a modern stream cipher.
 // https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf
 // Period: ~2^127
 // No systematic BigCrush failures reported.
-var tychei = __webpack_require__(32);
+var tychei = __webpack_require__(33);
 
 // The original ARC4-based prng included in this library.
 // Period: ~2^1600
-var sr = __webpack_require__(33);
+var sr = __webpack_require__(34);
 
 sr.alea = alea;
 sr.xor128 = xor128;
@@ -12254,7 +12299,7 @@ module.exports = sr;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
@@ -12376,7 +12421,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "xor128" prng algorithm by
@@ -12465,7 +12510,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "xorwow" prng algorithm by
@@ -12559,7 +12604,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "xorshift7" algorithm by
@@ -12664,7 +12709,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of Richard Brent's Xorgens xor4096 algorithm.
@@ -12818,7 +12863,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "Tyche-i" prng algorithm by
@@ -12929,7 +12974,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -13168,7 +13213,7 @@ if ((typeof module) == 'object' && module.exports) {
   module.exports = seedrandom;
   // When in node.js, try using crypto package for autoseeding.
   try {
-    nodecrypto = __webpack_require__(34);
+    nodecrypto = __webpack_require__(35);
   } catch (ex) {}
 } else if (true) {
   !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() { return seedrandom; }).call(exports, __webpack_require__, exports, module),
@@ -13183,34 +13228,10 @@ if ((typeof module) == 'object' && module.exports) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "cutout", attrs: { id: "word" } }, [
-    _vm._v(_vm._s(_vm.word))
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5070438c", esExports)
-  }
-}
 
 /***/ }),
 /* 36 */
@@ -13224,7 +13245,15 @@ var render = function() {
   return _c(
     "div",
     { attrs: { id: "app" } },
-    [_c("intro"), _vm._v(" "), _c("word")],
+    [
+      _c("div", { staticClass: "triangle", style: _vm.T[0] }),
+      _vm._v(" "),
+      _c("div", { staticClass: "triangle", style: _vm.T[1] }),
+      _vm._v(" "),
+      _c("intro"),
+      _vm._v(" "),
+      _c("word", { attrs: { word: _vm.word } })
+    ],
     1
   )
 }
