@@ -1,26 +1,14 @@
 <template>
-<div id="word" class="cutout">{{ word }}</div>
+<div id="word" class="cutout">{{ this.word }}</div>
 </template>
 
 <script>
-// get monday date
-var now = new Date()
-now.setUTCDate(now.getUTCDate() - (now.getUTCDay() - 1))  // TODO think through this logic
-var d = now.toDateString()
-// get rng seeded using monday date
-var seedrandom = require('seedrandom')
-var rng = seedrandom(d)
-
-// TODO: get random word from list using seeded rng
-var l = ['Truth', 'Breathe']
-var rand = 'Truth'
-console.log(rng())
-
 export default {
   name: 'word',
+  props: [ 'word' ],
   data() {
     return {
-      word: rand
+      // word: l[i]  // weekly random word
     }
   }
 }
