@@ -11910,7 +11910,7 @@ var l = ['Truth', 'Breathe']; // list of words
 
 // generate seed (this monday's date)
 var now = new Date();
-now.setUTCDate(now.getUTCDate() - (now.getUTCDay() || 7 - 1));
+now.setUTCDate(now.getUTCDate() - ((now.getUTCDay() || 7) - 1));
 var d = now.toDateString();
 // get rng seeded using monday date
 var rng = seedrandom(d);
