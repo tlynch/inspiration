@@ -1,7 +1,7 @@
 <template>
 <div id="app">
-  <div class="triangle" :style="T[0]"></div>
-  <div class="triangle" :style="T[1]"></div>
+  <triangle :gradient="T[0]"></triangle>
+  <triangle :gradient="T[1]"></triangle>
   <intro></intro>
   <word :word="word"></word>
 </div>
@@ -9,6 +9,7 @@
 
 <script>
 // imports
+import Triangle from './components/Triangle.vue'
 import Intro from './components/Intro.vue'
 import Word from './components/Word.vue'
 var seedrandom = require('seedrandom')  // seeded rng
@@ -38,9 +39,11 @@ var g = [
   "linear-gradient("+r[1]+"deg,transparent "+p[1]+"%,hsl("+c[1]+",90%,80%)"+p[1]+"%) no-repeat"
 ]
 
+// vue stuff
 export default {
   name: 'app',
   components: {
+    Triangle,
     Intro,
     Word
   },
@@ -72,11 +75,4 @@ body
   color white
   background black
   mix-blend-mode multiply
-
-// backgrounds
-.triangle
-  // position + size
-  position absolute
-  width 100%
-  height 100%
 </style>
