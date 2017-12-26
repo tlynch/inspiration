@@ -8,14 +8,12 @@
 </template>
 
 <script>
-// imports
+// imports + requires
 import Triangle from './components/Triangle.vue'
 import Intro from './components/Intro.vue'
 import Word from './components/Word.vue'
 var seedrandom = require('seedrandom')  // seeded rng
-
-//TODO get full list, put in separate file + import/require
-var l = ['Truth', 'Breathe']  // list of words
+var l = require('./assets/words.js').list // list of words
 
 // generate seed (this monday's date)
 var now = new Date()
