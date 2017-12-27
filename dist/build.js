@@ -11749,7 +11749,7 @@ exports.clearImmediate = clearImmediate;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7ba5bd90_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7ba5bd90_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(42);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -11833,7 +11833,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto:300i,700);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\n  margin: 0;\n}\n#app {\n  height: 100%;\n  width: 100%;\n}\n.cutout {\n  color: #fff;\n  background: #000;\n  mix-blend-mode: multiply;\n}\n.triangle {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n  margin: 0;\n}\n#app {\n  height: 100%;\n  width: 100%;\n}\n.cutout {\n  color: #fff;\n  background: #000;\n  mix-blend-mode: multiply;\n}\n", ""]);
 
 // exports
 
@@ -11882,16 +11882,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Intro = __webpack_require__(17);
+var _Triangle = __webpack_require__(17);
+
+var _Triangle2 = _interopRequireDefault(_Triangle);
+
+var _Intro = __webpack_require__(22);
 
 var _Intro2 = _interopRequireDefault(_Intro);
 
-var _Word = __webpack_require__(22);
+var _Word = __webpack_require__(27);
 
 var _Word2 = _interopRequireDefault(_Word);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var seedrandom = __webpack_require__(32); // seeded rng
 //
 //
 //
@@ -11902,16 +11907,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
-// imports
-var seedrandom = __webpack_require__(27); // seeded rng
-
-//TODO get full list, put in separate file + import/require
-var l = ['Truth', 'Breathe']; // list of words
+// imports + requires
+var l = __webpack_require__(41).list; // list of words
 
 // generate seed (this monday's date)
 var now = new Date();
+var date = now.getUTCDate();
+var day = now.getUTCDay();
 now.setUTCDate(now.getUTCDate() - ((now.getUTCDay() || 7) - 1));
-var d = now.toDateString();
+var d = now.toLocaleDateString('en-CA', { timeZone: 'UTC' }); // YYYY-MM-DD
 // get rng seeded using monday date
 var rng = seedrandom(d);
 // get random index
@@ -11925,11 +11929,13 @@ var p = [rng() * 10 + 40, rng() * 10 + 40];
 
 // build css for gradients
 // FIXME this could be DRYier
-var g = ["linear-gradient(" + r[0] + "deg,hsl(" + c[0] + ",90%,80%)" + p[0] + "%,transparent " + p[0] + "%) no-repeat", "linear-gradient(" + r[1] + "deg,transparent " + p[1] + "%,hsl(" + c[1] + ",90%,80%)" + p[1] + "%) no-repeat"];
+var g = ["linear-gradient(" + r[1] + "deg,transparent " + p[1] + "%,hsl(" + c[1] + ",90%,80%)" + p[1] + "%) no-repeat", "linear-gradient(" + r[0] + "deg,hsl(" + c[0] + ",90%,80%)" + p[0] + "%,transparent " + p[0] + "%) no-repeat"];
 
+// vue stuff
 exports.default = {
   name: 'app',
   components: {
+    Triangle: _Triangle2.default,
     Intro: _Intro2.default,
     Word: _Word2.default
   },
@@ -11947,13 +11953,152 @@ exports.default = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Intro_vue__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Intro_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Intro_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_22b83c6c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Intro_vue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Triangle_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Triangle_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Triangle_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_08cc3390_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Triangle_vue__ = __webpack_require__(21);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(18)
+}
+var normalizeComponent = __webpack_require__(5)
+/* script */
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Triangle_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_08cc3390_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Triangle_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/Triangle.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08cc3390", Component.options)
+  } else {
+    hotAPI.reload("data-v-08cc3390", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(19);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("2c0dfd46", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-08cc3390\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Triangle.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-08cc3390\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Triangle.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.triangle {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+
+exports.default = {
+  name: 'triangle',
+  props: ['gradient']
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "triangle", style: _vm.gradient })
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-08cc3390", esExports)
+  }
+}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Intro_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Intro_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Intro_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_22b83c6c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Intro_vue__ = __webpack_require__(26);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(23)
 }
 var normalizeComponent = __webpack_require__(5)
 /* script */
@@ -11999,13 +12144,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 18 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(19);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12025,7 +12170,7 @@ if(false) {
 }
 
 /***/ }),
-/* 19 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -12039,7 +12184,7 @@ exports.push([module.i, "\n#intro {\n  font-family: 'Roboto', sans-serif;\n  fon
 
 
 /***/ }),
-/* 20 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12063,7 +12208,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 21 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12087,18 +12232,18 @@ if (false) {
 }
 
 /***/ }),
-/* 22 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Word_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5070438c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Word_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5070438c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Word_vue__ = __webpack_require__(31);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(23)
+  __webpack_require__(28)
 }
 var normalizeComponent = __webpack_require__(5)
 /* script */
@@ -12144,13 +12289,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 23 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(24);
+var content = __webpack_require__(29);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12170,7 +12315,7 @@ if(false) {
 }
 
 /***/ }),
-/* 24 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -12184,7 +12329,7 @@ exports.push([module.i, "\n#word {\n  font-family: 'Roboto', sans-serif;\n  font
 
 
 /***/ }),
-/* 25 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12204,7 +12349,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 26 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12228,7 +12373,7 @@ if (false) {
 }
 
 /***/ }),
-/* 27 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // A library of seedable RNGs implemented in Javascript.
@@ -12243,17 +12388,17 @@ if (false) {
 // alea, a 53-bit multiply-with-carry generator by Johannes Baagøe.
 // Period: ~2^116
 // Reported to pass all BigCrush tests.
-var alea = __webpack_require__(28);
+var alea = __webpack_require__(33);
 
 // xor128, a pure xor-shift generator by George Marsaglia.
 // Period: 2^128-1.
 // Reported to fail: MatrixRank and LinearComp.
-var xor128 = __webpack_require__(29);
+var xor128 = __webpack_require__(34);
 
 // xorwow, George Marsaglia's 160-bit xor-shift combined plus weyl.
 // Period: 2^192-2^32
 // Reported to fail: CollisionOver, SimpPoker, and LinearComp.
-var xorwow = __webpack_require__(30);
+var xorwow = __webpack_require__(35);
 
 // xorshift7, by François Panneton and Pierre L'ecuyer, takes
 // a different approach: it adds robustness by allowing more shifts
@@ -12261,7 +12406,7 @@ var xorwow = __webpack_require__(30);
 // with 256 bits, that passes BigCrush with no systmatic failures.
 // Period 2^256-1.
 // No systematic BigCrush failures reported.
-var xorshift7 = __webpack_require__(31);
+var xorshift7 = __webpack_require__(36);
 
 // xor4096, by Richard Brent, is a 4096-bit xor-shift with a
 // very long period that also adds a Weyl generator. It also passes
@@ -12270,18 +12415,18 @@ var xorshift7 = __webpack_require__(31);
 // collisions.
 // Period: 2^4128-2^32.
 // No systematic BigCrush failures reported.
-var xor4096 = __webpack_require__(32);
+var xor4096 = __webpack_require__(37);
 
 // Tyche-i, by Samuel Neves and Filipe Araujo, is a bit-shifting random
 // number generator derived from ChaCha, a modern stream cipher.
 // https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf
 // Period: ~2^127
 // No systematic BigCrush failures reported.
-var tychei = __webpack_require__(33);
+var tychei = __webpack_require__(38);
 
 // The original ARC4-based prng included in this library.
 // Period: ~2^1600
-var sr = __webpack_require__(34);
+var sr = __webpack_require__(39);
 
 sr.alea = alea;
 sr.xor128 = xor128;
@@ -12294,7 +12439,7 @@ module.exports = sr;
 
 
 /***/ }),
-/* 28 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
@@ -12416,7 +12561,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 29 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "xor128" prng algorithm by
@@ -12505,7 +12650,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 30 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "xorwow" prng algorithm by
@@ -12599,7 +12744,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 31 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "xorshift7" algorithm by
@@ -12704,7 +12849,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 32 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of Richard Brent's Xorgens xor4096 algorithm.
@@ -12858,7 +13003,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 33 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_RESULT__;// A Javascript implementaion of the "Tyche-i" prng algorithm by
@@ -12969,7 +13114,7 @@ if (module && module.exports) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 34 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -13208,7 +13353,7 @@ if ((typeof module) == 'object' && module.exports) {
   module.exports = seedrandom;
   // When in node.js, try using crypto package for autoseeding.
   try {
-    nodecrypto = __webpack_require__(35);
+    nodecrypto = __webpack_require__(40);
   } catch (ex) {}
 } else if (true) {
   !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() { return seedrandom; }).call(exports, __webpack_require__, exports, module),
@@ -13223,13 +13368,29 @@ if ((typeof module) == 'object' && module.exports) {
 
 
 /***/ }),
-/* 35 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 36 */
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// list of words
+var list = ["Soft", "Hurt", "Summon", "Hands", "Lost", "Found", "Withdraw", "Bubble", "List", "System", "Sink", "Flourish", "Prey/Pray", "Apology", "Possess", "Closure", "Toy", "Flourish", "Blossom", "Secrets", "Puppet", "Border", "Soothe", "Web", "Fog", "(Re)build", "Key", "Cold", "Keep", "Engrave", "Fracture", "Drown", "Together", "Door", "Anniversary", "Song", "Ask", "Moment", "Linger", "Record", "Constellation", "Death", "Heal", "Heartbeat", "Name", "Space", "Dig", "Flex", "Distance", "Isolation", "Communication", "Grotesque", "Just", "Crack", "Mistake", "Split", "Fabric", "Promise", "Grow", "Trust", "Save", "Fool", "Youth", "Pass", "Blood", "Proof", "Erase", "Alarm", "Game", "Burn", "Somewhere", "Home", "Light", "Hide", "Laughter", "Define", "Dark", "Warrior", "Full", "Feast", "Cleanse", "Cycle", "Repeat", "Stasis", "Run", "Breath", "Lack", "Pause", "Grasp", "Open", "Flow", "Voice", "Longing", "Freefall", "Reunion", "Quiet", "Never-ending", "Crush", "Thunder", "Classic", "Lucidity", "Unconditional", "Rest", "Believe", "Protection", "Ancient", "Loss", "Revenge", "After", "Give", "Wrath", "Sin", "Reckless", "Disturb", "Strike", "Holy", "Wreck", "Glow", "Treasure", "Part"];
+
+// export list of use in main function
+exports.list = list;
+
+/***/ }),
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13241,9 +13402,9 @@ var render = function() {
     "div",
     { attrs: { id: "app" } },
     [
-      _c("div", { staticClass: "triangle", style: _vm.T[0] }),
+      _c("triangle", { attrs: { gradient: _vm.T[0] } }),
       _vm._v(" "),
-      _c("div", { staticClass: "triangle", style: _vm.T[1] }),
+      _c("triangle", { attrs: { gradient: _vm.T[1] } }),
       _vm._v(" "),
       _c("intro"),
       _vm._v(" "),
