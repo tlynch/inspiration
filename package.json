@@ -1,6 +1,6 @@
 {
   "name": "inspiration",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Weekly artistic prompts.",
   "scripts": {
     "dev": "webpack-dev-server --open --inline --hot",
