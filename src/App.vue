@@ -35,8 +35,8 @@ var p = [(rng() * 10) + 40, (rng() * 10) + 40]
 // build css for gradients
 // FIXME this could be DRYier
 var g = [
-  "linear-gradient("+r[0]+"deg,hsl("+c[0]+",90%,80%)"+p[0]+"%,transparent "+p[0]+"%) no-repeat",
-  "linear-gradient("+r[1]+"deg,transparent "+p[1]+"%,hsl("+c[1]+",90%,80%)"+p[1]+"%) no-repeat"
+  "linear-gradient("+r[1]+"deg,transparent "+p[1]+"%,hsl("+c[1]+",90%,80%)"+p[1]+"%) no-repeat",
+  "linear-gradient("+r[0]+"deg,hsl("+c[0]+",90%,80%)"+p[0]+"%,transparent "+p[0]+"%) no-repeat"
 ]
 
 // vue stuff
