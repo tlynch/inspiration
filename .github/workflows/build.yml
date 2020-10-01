@@ -12,7 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install dependencies & build
-        run: |
-          npm install
-          npm run build
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build dist/
+        run: npm run build
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: main
+          BRANCH: gh-pages
+          FOLDER: docs

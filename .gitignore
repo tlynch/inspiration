@@ -3,7 +3,7 @@
 
 # compiled files
 node_modules/
-dist/*
+docs/
 
 # error/log files
 *.log
