@@ -1,5 +1,5 @@
 <template>
-<div class="triangle" :style="gradient"></div>
+  <div class="triangle" :style="gradient"></div>
 </template>
 
 <script>
@@ -9,10 +9,11 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-.triangle
-  // size + position
-  position absolute
-  width 100%
-  height 100%
+<style scoped>
+.triangle {
+  /* size + position */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 </style>

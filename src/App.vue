@@ -1,10 +1,10 @@
 <template>
-<div id="app">
-  <triangle :gradient="T[0]"></triangle>
-  <triangle :gradient="T[1]"></triangle>
-  <intro></intro>
-  <word :word="word"></word>
-</div>
+  <div id="app">
+    <Triangle :gradient="T[0]"/>
+    <Triangle :gradient="T[1]"/>
+    <Intro/>
+    <Word :word="word"/>
+  </div>
 </template>
 
 <script>
@@ -16,25 +16,23 @@ var seedrandom = require('seedrandom')  // seeded rng
 var l = require('./assets/words.js').list // list of words
 
 // generate seed (this monday's date)
-var now = new Date()
-var date = now.getUTCDate()
-var day = now.getUTCDay()
+const now = new Date()
 now.setUTCDate(now.getUTCDate() - ((now.getUTCDay()||7) - 1))
-var d = now.toLocaleDateString('en-CA', { timeZone: 'UTC' })  // YYYY-MM-DD
+const d = now.toLocaleDateString('en-CA', { timeZone: 'UTC' })  // YYYY-MM-DD
 // get rng seeded using monday date
-var rng = seedrandom(d)
+const rng = seedrandom(d)
 // get random index
-var i = Math.floor(rng() * (l.length))
+const i = Math.floor(rng() * (l.length))
 // get rotations: [-180, 180)
-var r = [(rng() * 360) - 180, (rng() * 360) - 180]
+const r = [(rng() * 360) - 180, (rng() * 360) - 180]
 // get colours (hue): [0, 360)
-var c = [(rng() * 360), (rng() * 360)]
+const c = [(rng() * 360), (rng() * 360)]
 // get positions (offset): [40, 60)
-var p = [(rng() * 10) + 40, (rng() * 10) + 40]
+const p = [(rng() * 10) + 40, (rng() * 10) + 40]
 
 // build css for gradients
 // FIXME this could be DRYier
-var g = [
+const g = [
   "linear-gradient("+r[1]+"deg,transparent "+p[1]+"%,hsl("+c[1]+",90%,80%)"+p[1]+"%) no-repeat",
   "linear-gradient("+r[0]+"deg,hsl("+c[0]+",90%,80%)"+p[0]+"%,transparent "+p[0]+"%) no-repeat"
 ]
@@ -59,20 +57,23 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-// fonts
-@import url('https://fonts.googleapis.com/css?family=Roboto:300i,700')
+<style>
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300i,700');
 
-// reset
-body
-  margin 0
-#app
-  height 100%
-  width 100%
+/* reset */
+body {
+  margin: 0;
+}
+#app {
+  height: 100%;
+  width: 100%;
+}
 
-// cutout text
-.cutout
-  color white
-  background black
-  mix-blend-mode multiply
+/* cutout text */
+.cutout {
+  color: white;
+  background: black;
+  mix-blend-mode: multiply;
+}
 </style>

@@ -1,5 +1,5 @@
 // list of words
-var list = [
+const list = [
   "Soft",
   "Hurt",
   "Summon",

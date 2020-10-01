@@ -1,5 +1,5 @@
 <template>
-<div id="intro" class="cutout">{{ msg }}</div>
+  <div id="intro" class="cutout">{{ msg }}</div>
 </template>
 
 <script>
@@ -13,17 +13,18 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-#intro
-  // font
-  font-family 'Roboto', sans-serif
-  font-weight 300
-  font-style italic
-  font-size 35px
+<style scoped>
+#intro {
+  /* font */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 35px;
 
-  // size + position
-  position absolute
-  top 50px
-  left 100px
-  padding 0 15px
+  /* size + position */
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  padding: 0 15px;
+}
 </style>
