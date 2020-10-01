@@ -16,7 +16,6 @@ export default {
 <style scoped>
 #intro {
   /* font */
-  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-style: italic;
   font-size: 35px;

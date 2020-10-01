@@ -12,7 +12,6 @@ export default {
 <style scoped>
 #word {
   /* font */
-  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   font-size: 70px;
   font-variant: small-caps;

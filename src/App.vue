@@ -58,12 +58,10 @@ export default {
 </script>
 
 <style>
-/* fonts */
-@import url('https://fonts.googleapis.com/css?family=Roboto:300i,700');
-
 /* reset */
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 #app {
   height: 100%;

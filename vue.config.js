@@ -7,5 +7,7 @@ module.exports = {
         return args
       })
   },
-  publicPath: '/inspiration'
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/inspiration/'
+    : '/'
 }
